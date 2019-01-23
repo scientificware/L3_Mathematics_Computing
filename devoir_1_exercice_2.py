@@ -1,4 +1,4 @@
-﻿# Calcul de la moyenne de 8 note en excluant une des valeurs maximales ou minimales s'il en existe plusieurs occurences.
+﻿# Calcul de la moyenne de 8 note en excluant une des valeurs maximales ou minimales s'il en existe plusieurs occurrences.
 lmax = 0
 occ_max = -1
 lmin = 0
