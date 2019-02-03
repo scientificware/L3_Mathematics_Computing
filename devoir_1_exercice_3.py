@@ -8,16 +8,18 @@ while n <2 :
 # Création de la liste des nombres compris entre 2 et n.
 l = [i for i in range(2,n+1)]
 
-# Suppression des multiples de chaque nombre compris dans la première moitié de la liste.
+# Suppression des multiples de chaque nombre compris entre 2 et la racine carrée de n.
 print("Liste des valeurs supprimées à chaque itération :")
 for i in range(2,int(n**0.5)+1) :
-    s = 2*i
-    print("sup", end=" ")
-    while s <= n :
-        print(s, end=" ")
-        l[s-2] = ' '
-        s = s + i
-    print()
+    # Vérification situation d'un multiple déjà traité sinon suppression de ses multiples
+    if l[i-2] != ' ' :
+        s = 2*i
+        print("sup", end=" ")
+        while s <= n :
+            print(s, end=" ")
+            l[s-2] = ' '
+            s = s + i
+        print()
 
 # Suppression des blancs.
 for k in range(1,l.count(' ')+1) :
