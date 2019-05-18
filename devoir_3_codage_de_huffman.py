@@ -1,7 +1,4 @@
-﻿# Codage Huffman
-
-import random
-import copy
+# Codage Huffman
 
 class Arborescence_Huffman :
     """Elément d'une arborescence"""
@@ -14,6 +11,25 @@ class Arborescence_Huffman :
         self.__filsD = ar2
         self.majTableCo()
         self.__ident=''
+
+    def __str__(self):
+        '''Méthode renvoyant une chaîne de caractères représentant la sous-arborescence'''
+        ch = ''
+        schD = ''
+        schG = ''
+        if self.__caractere == '' :
+            schD  = "┬1" + str(self.__filsD)
+            if self.__filsD.donneCar() =='' :
+                n = schD.count("\n")
+                schD = schD.replace("\n","\n│ ",n-1)
+            schG = "└0" + str(self.__filsG)
+            if self.__filsG.donneCar() =='' :
+                n = schG.count("\n")
+                schG = schG.replace("\n","\n  ",n-1)                  
+            ch = schD + schG        
+        else :
+            ch= '╢'+self.__caractere+'\n'  
+        return ch
 
 
     def donneEti(self):
@@ -125,7 +141,7 @@ while not(choix==6):
                 "\nCodage selon l\'algorithme d\'Huffman"
                 "\nMenu principal\n"+
                 "1-Test de base.\n"+
-                "2-Afficher le dictionnaire.\n"+
+                "2-Afficher le dictionnaire et l'arborescence.\n"+
                 "3-Modifier la phrase de référence.\n"+
                 "4-Coder une phrase.\n"+
                 "5-Décoder une suite de bits.\n"+
@@ -146,12 +162,16 @@ while not(choix==6):
             
             suiteBit = '1010110001110'
             print('\nDécodage Huffman de la suite de bit "',suiteBit,'" en utilisant la chaine de référence "',phraseRef,'"')
+            print('\nArborescence construite à partir de la chaine de référence')
+            print(code_Huffman.donneArbre())
             print('Suite de bits décodée -> ', code_Huffman.décoder(suiteBit))
             
         elif choix == 2 :
             print('\nDictionnaire de codage et arborescence construits à partir de la chaine de référence "',phrsR,'"')
-            print(cdH.donneArbre().donneTableCo())           
+            print(cdH.donneArbre().donneTableCo())
+            print(cdH.donneArbre())
 
+            
         # Saisie d'une chaîne de caractères de référence,
         # Construction d'une instance du codage de Huffman sur la base de cette chaîne de référence,
         elif choix == 3 :
