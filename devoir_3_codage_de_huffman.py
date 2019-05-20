@@ -10,7 +10,6 @@ class Arborescence_Huffman :
         self.__filsG = ar1
         self.__filsD = ar2
         self.majTableCo()
-        self.__ident=''
 
     def __str__(self):
         '''Méthode renvoyant une chaîne de caractères représentant la sous-arborescence'''
