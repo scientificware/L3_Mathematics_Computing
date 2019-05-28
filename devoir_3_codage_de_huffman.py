@@ -1,14 +1,17 @@
-# Codage Huffman
+﻿# Codage Huffman
 
 class Arborescence_Huffman :
     """Elément d'une arborescence"""
+    # Déclarer ici les attributs de classe
 
     def __init__(self,c,n,ar1,ar2):
         '''Initialisateur'''
+        # Déclarer ici les attributs d'instance.
         self.__caractere = c
         self.__poids = n
         self.__filsG = ar1
         self.__filsD = ar2
+        self.__tableCo = {}
         self.majTableCo()
 
     def __str__(self):
@@ -85,13 +88,13 @@ class Codage_Huffman :
     
     def __init__(self, chaineRef) :
         '''Initialisateur qui construit l'arborescence'''
-        self.__codee = ''
+        codee = ''
         self.__arbre = []
         for c in chaineRef :
             occ = chaineRef.count(c)
-            if not(c in self.__codee) :
+            if not(c in codee) :
                 self.__arbre.append(Arborescence_Huffman(c,occ,None,None))
-                self.__codee += c
+                codee += c
 
         while len(self.__arbre) > 1 :
             self.__arD = self.__arbre.pop(1)
@@ -101,11 +104,11 @@ class Codage_Huffman :
 
     def coder(self, ch) :
         '''Méthode qui prend en entrée une chaîne et qui renvoie une suite de bits'''
-        self.__phrase = ch
-        self.__tabCod = self.donneArbre().donneTableCo()
-        for c in self.__phrase :
-            self.__phrase = self.__phrase.replace(c,self.__tabCod[c])
-        return self.__phrase
+        phrase = ch
+        tabCod = self.donneArbre().donneTableCo()
+        for c in phrase :
+            phrase = phrase.replace(c,tabCod[c])
+        return phrase
     
    
     def décoder(self, bit) :
