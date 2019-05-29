@@ -4,6 +4,7 @@ class Arborescence_Huffman :
     """Elément d'une arborescence"""
     # Déclarer ici les attributs de classe
 
+
     def __init__(self,c,n,ar1,ar2):
         '''Initialisateur'''
         # Déclarer ici les attributs d'instance.
@@ -14,8 +15,10 @@ class Arborescence_Huffman :
         self.__tableCo = {}
         self.majTableCo()
 
+
     def __str__(self):
         '''Méthode renvoyant une chaîne de caractères représentant la sous-arborescence'''
+        # Déclarer ici les variables locales
         ch = ''
         schD = ''
         schG = ''
@@ -36,21 +39,25 @@ class Arborescence_Huffman :
 
     def donneEti(self):
         '''Méthode renvoyant l'étiquette (la valeur entière associée à la racine)'''
+        # Déclarer ici les variables locales
         return self.__poids
 
 
     def donneCar(self):
         '''Méthode renvoyant le caractère associé, le cas échéant, à la racine'''
+        # Déclarer ici les variables locales
         return self.__caractere
     
     
     def donneFilsG(self):
         '''Méthode renvoyant la sous-arborescence gauche si elle existe'''
+        # Déclarer ici les variables locales
         return self.__filsG
 
     
     def donneFilsD(self):
         '''Méthode renvoyant la sous-arborescence droite si elle existe'''
+        # Déclarer ici les variables locales
         return self.__filsD
 
 
@@ -58,12 +65,15 @@ class Arborescence_Huffman :
         '''Méthode fusionnant l'arborescence courante avec une autre'''
         # Renvoie une nouvelle arborescence ayant pour fils gauche l'arborescence courant
         # et pour fils droit la seconde arborescence.
+        
+        # Déclarer ici les variables locales
         nArbo = Arborescence_Huffman("",self.__poids + arb.donneEti(),self,arb)
         return nArbo
 
 
     def majTableCo(self) :
         '''Mise à jour de la table de correspondance'''
+        # Déclarer ici les variables locales
         self.__tableCo = {}
         if self.__caractere!='' and self.donneFilsG()==None and self.donneFilsD()==None :
             self.__tableCo = {self.__caractere:''}
@@ -81,6 +91,7 @@ class Arborescence_Huffman :
 
     def donneTableCo(self) :
         '''Méthode renvoyant la table de correspondance entre chaque caractère de'''
+        # Déclarer ici les variables locales
         return self.__tableCo
 
 
@@ -88,6 +99,7 @@ class Codage_Huffman :
     
     def __init__(self, chaineRef) :
         '''Initialisateur qui construit l'arborescence'''
+        # Déclarer ici les attributs d'instance.
         codee = ''
         self.__arbre = []
         for c in chaineRef :
@@ -100,10 +112,11 @@ class Codage_Huffman :
             self.__arD = self.__arbre.pop(1)
             self.__arbre[0]= self.__arbre[0].fusionne(self.__arD)
             self.__arbre = sorted(self.__arbre , key = lambda Arborescence_Huffman : Arborescence_Huffman.donneEti())  
-        
 
+        
     def coder(self, ch) :
         '''Méthode qui prend en entrée une chaîne et qui renvoie une suite de bits'''
+        # Déclarer ici les variables locales
         phrase = ch
         tabCod = self.donneArbre().donneTableCo()
         for c in phrase :
@@ -113,6 +126,7 @@ class Codage_Huffman :
    
     def décoder(self, bit) :
         '''Méthode qui prend en entrée une suite de bits et qui renvoie une chaîne'''
+        # Déclarer ici les variables locales
         phrase = ''
         racine = self.donneArbre()
         branche = racine
@@ -127,7 +141,10 @@ class Codage_Huffman :
    
         return phrase
 
+
     def donneArbre(self) :
+        '''Méthode qui retourne l'arborescence'''
+        # Déclarer ici les variables locales
         return self.__arbre[0]
  
 
